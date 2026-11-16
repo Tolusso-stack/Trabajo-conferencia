@@ -1,0 +1,194 @@
+:root {
+  --cesped: #0c3f29;
+  --cesped-franja: #0f4a30;
+  --cesped-vivo: #1c6b43;
+  --tiza: #f3f6f4;
+  --linea: #d3ddd6;
+  --amarilla: #f2c200;
+  --amarilla-sombra: #b58d00;
+  --tinta: #10241a;
+  --tinta-suave: #4a5f53;
+  --roja: #c62828;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 14px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: "Barlow", system-ui, sans-serif;
+  color: var(--tinta);
+  /* Franjas de césped recién cortado */
+  background: repeating-linear-gradient(90deg, var(--cesped-franja) 0 70px, var(--cesped) 70px 140px) fixed;
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 600px;
+  background: var(--tiza);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Cabecera con círculo central de cancha ===== */
+.cabecera {
+  position: relative;
+  overflow: hidden;
+  padding: 30px 24px 26px;
+  color: var(--tiza);
+  background: repeating-linear-gradient(90deg, var(--cesped-franja) 0 50px, var(--cesped) 50px 100px);
+  border-bottom: 5px solid var(--amarilla);
+}
+.cabecera::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 170px;
+  height: 170px;
+  border: 3px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+}
+.cabecera h1 {
+  position: relative;
+  margin: 0 0 6px;
+  font-family: "Barlow Condensed", system-ui, sans-serif;
+  font-size: clamp(2.4rem, 9vw, 3.2rem);
+  line-height: 1;
+  font-weight: 700;
+}
+.cabecera p { position: relative; margin: 0; max-width: 34ch; color: #cfe3d6; }
+
+.contenido { padding: 24px; }
+
+/* ===== Formulario ===== */
+.campo { margin-bottom: 16px; }
+.fila { display: grid; gap: 0 14px; }
+@media (min-width: 520px) { .fila { grid-template-columns: 1fr 1fr; } }
+
+label, legend { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
+
+input[type="text"], input[type="password"], select {
+  width: 100%;
+  padding: 13px 12px;
+  font: inherit;
+  color: var(--tinta);
+  background: #fff;
+  border: 1.5px solid var(--linea);
+  border-radius: 8px;
+  transition: border-color 0.15s;
+}
+input[type="text"]:hover, input[type="password"]:hover, select:hover { border-color: var(--cesped-vivo); }
+input:focus-visible, select:focus-visible, button:focus-visible {
+  outline: 3px solid var(--amarilla);
+  outline-offset: 2px;
+}
+
+/* Selector de momento tipo pestañas */
+.momento { border: 0; margin: 0 0 16px; padding: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.momento legend { width: 100%; padding: 0; }
+.momento label { flex: 1; margin: 0; min-width: 140px; }
+.momento input { position: absolute; opacity: 0; }
+.momento span {
+  display: block;
+  padding: 13px 8px;
+  text-align: center;
+  font-weight: 500;
+  background: #fff;
+  border: 1.5px solid var(--linea);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.momento input:checked + span { background: var(--cesped); border-color: var(--cesped); color: #fff; }
+.momento input:focus-visible + span { outline: 3px solid var(--amarilla); outline-offset: 2px; }
+
+/* ===== Botones ===== */
+button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 15px;
+  font: 700 1.25rem "Barlow Condensed", system-ui, sans-serif;
+  color: var(--tinta);
+  background: var(--amarilla);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 var(--amarilla-sombra);
+  cursor: pointer;
+}
+button:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--amarilla-sombra); }
+button:disabled { opacity: 0.6; cursor: wait; }
+button.secundario { color: #fff; background: var(--cesped); box-shadow: 0 4px 0 #082a1b; }
+button.secundario:active { box-shadow: 0 1px 0 #082a1b; }
+
+/* ===== Estados ===== */
+.error {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  font-weight: 500;
+  color: var(--roja);
+  background: #fdecec;
+  border-left: 5px solid var(--roja);
+  border-radius: 0 8px 8px 0;
+}
+.cargando { margin: 16px 0 0; font-weight: 500; color: var(--cesped-vivo); }
+.cargando::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: -3px;
+  border: 3px solid var(--linea);
+  border-top-color: var(--cesped-vivo);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+@keyframes girar { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .cargando::before { animation: none; } }
+
+/* ===== Resultado ===== */
+h2 {
+  margin: 28px 0 10px;
+  font-family: "Barlow Condensed", system-ui, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.texto-generado {
+  position: relative;
+  margin: 0;
+  padding: 20px 18px 20px 58px;
+  white-space: pre-wrap;
+  line-height: 1.65;
+  background: #fff;
+  border: 1.5px solid var(--linea);
+  border-radius: 12px;
+}
+.texto-generado::before {
+  content: "“";
+  position: absolute;
+  left: 14px;
+  top: 2px;
+  font: 700 4.5rem/1 "Barlow Condensed", Georgia, serif;
+  color: var(--amarilla);
+}
+
+/* ===== Historial ===== */
+#listaHistorial { margin: 0; padding: 0; list-style: none; }
+#listaHistorial li {
+  margin-bottom: 8px;
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  background: #fff;
+  border: 1.5px solid var(--linea);
+  border-left: 5px solid var(--cesped-vivo);
+  border-radius: 8px;
+  cursor: pointer;
+}
+#listaHistorial li:hover { border-color: var(--cesped-vivo); }
+#listaHistorial li small { display: block; margin-bottom: 2px; color: var(--tinta-suave); }

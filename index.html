@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sala de prensa · Generador de declaraciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="tarjeta">
+    <header class="cabecera">
+      <h1>Sala de prensa ⚽</h1>
+      <p>Armá tu declaración para la conferencia, antes o después del partido.</p>
+    </header>
+
+    <div class="contenido">
+      <form id="formulario" novalidate>
+
+        <div class="campo">
+          <label for="claveApi">Tu API Key de Groq</label>
+          <input id="claveApi" type="password" autocomplete="off" placeholder="Pegá tu clave (se guarda solo en este navegador)">
+        </div>
+
+        <fieldset class="momento">
+          <legend>Momento</legend>
+          <label><input type="radio" name="momento" value="previa" checked><span>Previa del partido</span></label>
+          <label><input type="radio" name="momento" value="posterior"><span>Después del partido</span></label>
+        </fieldset>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="rol">¿Quién habla?</label>
+            <select id="rol">
+              <option>Delantero centro</option>
+              <option>Extremo</option>
+              <option>Mediocampista</option>
+              <option>Defensor central</option>
+              <option>Lateral</option>
+              <option>Arquero</option>
+              <option>Capitán</option>
+              <option>Director técnico</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="tono">Tono</label>
+            <select id="tono">
+              <option>Humilde</option>
+              <option>Confiado</option>
+              <option>Diplomático</option>
+              <option>Motivador</option>
+              <option>Emotivo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="tema">Periodista o tema de la pregunta</label>
+          <input id="tema" type="text" maxlength="200" placeholder="Ej: Pregunta sobre el rival, la final del domingo">
+        </div>
+
+        <div class="campo">
+          <label for="situacion">Situación típica (opcional)</label>
+          <select id="situacion">
+            <option value="">Ninguna en particular</option>
+            <option>Victoria importante</option>
+            <option>Derrota dolorosa</option>
+            <option>Empate con sabor amargo</option>
+            <option>Polémica arbitral</option>
+            <option>Rumores de transferencia</option>
+            <option>Lesión de un compañero</option>
+          </select>
+        </div>
+
+        <button id="botonGenerar" type="submit">Generar declaración</button>
+      </form>
+
+      <p id="mensajeError" class="error" role="alert" hidden></p>
+      <p id="cargando" class="cargando" hidden>El técnico está pensando la respuesta…</p>
+
+      <section id="resultado" hidden>
+        <h2>🎤 Tu declaración</h2>
+        <p id="textoGenerado" class="texto-generado"></p>
+        <button id="botonCopiar" type="button" class="secundario">Copiar texto</button>
+      </section>
+
+      <section id="seccionHistorial" hidden>
+        <h2>Últimas declaraciones</h2>
+        <ul id="listaHistorial"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
