@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sala de prensa · Generador de declaraciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="tarjeta">
+    <h1>Sala de prensa</h1>
+    <p class="subtitulo">Preparate para la conferencia: generá tu declaración antes o después del partido.</p>
+
+    <form id="formulario" novalidate>
+      <label for="claveApi">Tu API Key de Groq</label>
+      <input id="claveApi" type="password" autocomplete="off" placeholder="Pegá tu clave (se guarda solo en este celu)">
+
+      <fieldset class="momento">
+        <legend>Momento</legend>
+        <label><input type="radio" name="momento" value="previa" checked><span>Previa del partido</span></label>
+        <label><input type="radio" name="momento" value="posterior"><span>Después del partido</span></label>
+      </fieldset>
+
+      <label for="rol">¿Quién habla?</label>
+      <select id="rol">
+        <option>Delantero centro</option>
+        <option>Extremo</option>
+        <option>Mediocampista</option>
+        <option>Defensor central</option>a

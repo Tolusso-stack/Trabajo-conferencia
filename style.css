@@ -1,0 +1,31 @@
+:root {
+  --cesped: #0f3d2a;
+  --cesped-claro: #17553b;
+  --tiza: #f4f6f2;
+  --linea: #cfd8cf;
+  --tarjeta-amarilla: #f2c200;
+  --tinta: #12261c;
+  --error: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px;
+  background: var(--cesped);
+  font-family: "Barlow", system-ui, sans-serif;
+  color: var(--tinta);
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 560px;
+  background: var(--tiza);
+  border-radius: 10px;
+  padding: 28px 24px;
+}
