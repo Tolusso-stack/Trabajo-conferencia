@@ -1,0 +1,32 @@
+:root {
+  --cesped: #0c3f29;
+  --cesped-franja: #0f4a30;
+  --cesped-vivo: #1c6b43;
+  --tiza: #f3f6f4;
+  --linea: #d3ddd6;
+  --amarilla: #f2c200;
+  --amarilla-sombra: #b58d00;
+  --tinta: #10241a;
+  --tinta-suave: #4a5f53;
+  --roja: #c62828;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 14px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: "Barlow", system-ui, sans-serif;
+  color: var(--tinta);
+  /* Franjas de césped recién cortado */
+  background: repeating-linear-gradient(90deg, var(--cesped-franja) 0 70px, var(--cesped) 70px 140px) fixed;
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 600px;
+  background: var(--tiza);
